@@ -9,6 +9,7 @@ public class Task7LongRedirect {
         Response response = null;
         String url = "https://playground.learnqa.ru/api/long_redirect";
         int statusCode;
+        int countRedirect = 0;
 
         while (true) {
             response = RestAssured
@@ -22,8 +23,10 @@ public class Task7LongRedirect {
         statusCode = response.getStatusCode();
 
         if (statusCode == 200) break;
+        countRedirect++;
         url = response.getHeader("Location");
         System.out.println(url);
     }
+        System.out.println("Количество редиректов = " + countRedirect);
 }
 }
