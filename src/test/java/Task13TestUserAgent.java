@@ -32,9 +32,9 @@ public class Task13TestUserAgent {
                 .jsonPath();
         response.prettyPrint();
 
-        assertEquals(response.get("platform"), platform, "Неправильная платформа " + userAgent);
-        assertEquals(response.get("browser"), browser, "Неправильный браузер " + userAgent);
-        assertEquals(response.get("device"), device, "Неправильный девайс " + userAgent);
+        assertEquals(response.get("platform"), platform, "Неправильная платформа для User-Agent " + userAgent);
+        assertEquals(response.get("browser"), browser, "Неправильный браузер для User-Agent " + userAgent);
+        assertEquals(response.get("device"), device, "Неправильный девайс для User-Agent " + userAgent);
 
     }
 
