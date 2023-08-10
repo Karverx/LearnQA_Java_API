@@ -8,6 +8,7 @@ import io.restassured.response.Response;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static lib.DataGenerator.getRegistrationData;
 
 public class ApiCoreRequests {
     @Step("Make a GET-request with token and auth cookie")
@@ -45,5 +46,17 @@ public class ApiCoreRequests {
                 .body(authData)
                 .post(url)
                 .andReturn();
+    }
+
+    @Step("Create new user and return ID")
+    public int getIdFromNewCreatingUser(){
+        Map <String, String> data = getRegistrationData();
+        String urlCreate = "https://playground.learnqa.ru/api/user/";
+
+        Response response = new ApiCoreRequests().makePostRequest(
+                urlCreate,
+                data
+        );
+        return response.jsonPath().getInt("id");
     }
 }
