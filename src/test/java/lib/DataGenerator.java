@@ -34,7 +34,6 @@ public class DataGenerator {
             } else
                 userData.put(key, defaultValues.get(key));
         }
-
         return userData;
     }
 }
