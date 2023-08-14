@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -39,9 +37,11 @@ public class UserAuthTest extends BaseTestCase {
         this.userIdOnAuth = this.getIntFromJson(responseGetAuth, "user_id");
     }
 
-    @Test
     @Description("This test successfully authorize user by email and password")
     @DisplayName("Test positive auth user")
+    @Test
+    @Severity(value = SeverityLevel.BLOCKER)
+    @TmsLink("test-case-auth-1")
     public void testAuthUser() {
         Response responseCheckAuth = apiCoreRequests
                 .makeGetRequest(
@@ -57,6 +57,8 @@ public class UserAuthTest extends BaseTestCase {
     @DisplayName("Test negative auth user")
     @ParameterizedTest
     @ValueSource(strings = {"cookie", "headers"})
+    @Severity(value = SeverityLevel.NORMAL)
+    @TmsLink("test-case-auth-2")
     public void testNegativeAuthUser(String condition) {
         if (condition.equals("cookie")) {
             Response responseForCheck = apiCoreRequests.makeGetRequestWithCookie(

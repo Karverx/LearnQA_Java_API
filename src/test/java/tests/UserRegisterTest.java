@@ -2,9 +2,7 @@ package tests;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
@@ -26,9 +24,11 @@ public class UserRegisterTest extends BaseTestCase {
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
-    @Test
     @Description("This test check registration new user with existing email")
     @DisplayName("Test negative register user - existing email")
+    @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+    @TmsLink("test-case-register-1")
     public void testCreateUserWithExistingEmail(){
         String email = "vinkotov@example.com";
 
@@ -47,9 +47,11 @@ public class UserRegisterTest extends BaseTestCase {
 
     }
 
-    @Test
     @Description("This test successfully register new user")
     @DisplayName("Test positive register user - Success")
+    @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+    @TmsLink("test-case-register-2")
     public void testCreateUserSuccessfully(){
         String email = DataGenerator.getRandomEmail();
 
@@ -66,9 +68,11 @@ public class UserRegisterTest extends BaseTestCase {
         Assertions.assertJsonHasField(responseCreateAuth, "id");
     }
 
-    @Test
     @Description("This test check registration new user with incorrect email - no @ in email")
     @DisplayName("Test negative register user - no @ in email")
+    @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+    @TmsLink("test-case-register-3")
     public void testCreateUserWithIncorrectEmail(){
         String email = "learnqaexample.com";
 
@@ -95,6 +99,8 @@ public class UserRegisterTest extends BaseTestCase {
             "'{\"email\": \"test@mail.com\",\"username\": \"test\",\"password\": \"test\",\"lastName\": \"test\"}', firstName",
             "'{\"email\": \"test@mail.com\",\"username\": \"test\",\"password\": \"test\",\"firstName\": \"test\"}', lastName"
     })
+    @Severity(value = SeverityLevel.CRITICAL)
+    @TmsLink("test-case-register-4")
     public void testCreateUserWithIncorrectData(String body, String missing) throws JsonProcessingException {
 
         HashMap userData =
@@ -110,9 +116,11 @@ public class UserRegisterTest extends BaseTestCase {
     }
 
 
-    @Test
     @Description("This test check registration new user with incorrect name - short")
     @DisplayName("Test negative register user - short username = a")
+    @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+    @TmsLink("test-case-register-5")
     public void testCreateUserWithShortUsername(){
         String name = "a";
 
@@ -130,9 +138,11 @@ public class UserRegisterTest extends BaseTestCase {
 
     }
 
-    @Test
     @Description("This test check registration new user with incorrect name - very long username > 250 symbols")
     @DisplayName("Test negative register user - very long username > 250 symbols")
+    @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+    @TmsLink("test-case-register-6")
     public void testCreateUserWithVeryLongUsername(){
         String name = RandomStringUtils.randomAlphabetic(251);
 

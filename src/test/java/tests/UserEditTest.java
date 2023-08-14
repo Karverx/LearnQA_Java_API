@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -24,6 +22,8 @@ public class UserEditTest extends BaseTestCase {
     @Description("This test check edit username")
     @DisplayName("Test positive edit username")
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+    @TmsLink("test-case-edit-1")
     public void testEditJustCreatedTest() {
         //GENERATE USER
         Map<String, String> userData = getRegistrationData();
@@ -79,6 +79,8 @@ public class UserEditTest extends BaseTestCase {
     @Description("This test check edit user data by not auth user")
     @DisplayName("Test negative edit user by not auth user - Auth token not supplied")
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+    @TmsLink("test-case-edit-2")
     public void testEditByNotAuthUser() {
         Map<String, String> userData = getRegistrationData();
         int userId = apiCoreRequests.getIdFromNewCreatingUser();
@@ -115,6 +117,9 @@ public class UserEditTest extends BaseTestCase {
     @Description("This test check edit user2 with token and cookie from user1")
     @DisplayName("Test edit user2 with token and cookie from user1")
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+    @Issue(value = "BUG-0451")
+    @TmsLink("test-case-edit-3")
     public void testEditByDifferentUser() {
         //GENERATE USER1 and USER2
         Map<String, String> userData1 = getRegistrationData();
@@ -197,6 +202,8 @@ public class UserEditTest extends BaseTestCase {
     @Description("This test check edit user with incorrect email - no @")
     @DisplayName("Test negative edit user with incorrect email - no @")
     @Test
+    @Severity(value = SeverityLevel.NORMAL)
+    @TmsLink("test-case-edit-4")
     public void testEditUserWithIncorrectEmail() {
         //GENERATE USER
         Map<String, String> userData = getRegistrationData();
@@ -254,6 +261,8 @@ public class UserEditTest extends BaseTestCase {
     @Description("This test check edit user with short firstName - a")
     @DisplayName("Test negative edit user with short firstName - a")
     @Test
+    @Severity(value = SeverityLevel.NORMAL)
+    @TmsLink("test-case-edit-5")
     public void testEditUserWithShortFirstName(){
         //GENERATE USER
         Map<String, String> userData = getRegistrationData();

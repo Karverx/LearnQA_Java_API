@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
@@ -23,6 +21,8 @@ public class UserGetTest extends BaseTestCase {
     @Description("This test check get info - only username - User Not Auth")
     @DisplayName("Test positive get user info - only username - user not auth")
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+    @TmsLink("test-case-getUserInfo-1")
     public void testGetUserDataNotAuth(){
         Response responseUserData = RestAssured
                 .get("https://playground.learnqa.ru/api/user/2")
@@ -37,6 +37,8 @@ public class UserGetTest extends BaseTestCase {
     @Description("This test check get info - username, firstName, lastName, email - auth as same user")
     @DisplayName("Test positive get user all info - auth as same user")
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+    @TmsLink("test-case-getUserInfo-2")
     public void testGetUserDetailsAuthAsSameUser(){
         Map<String, String> authData = new HashMap<>();
         authData.put("email", "vinkotov@example.com");
@@ -66,6 +68,8 @@ public class UserGetTest extends BaseTestCase {
     @Description("This test check get info - only username - auth as different user")
     @DisplayName("Test positive get user info - only username - auth as different user")
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+    @TmsLink("test-case-getUserInfo-3")
     public void testGetUserDetailsAuthAsDifferentUser(){
         Map<String, String> authData = new HashMap<>();
         authData.put("email", "vinkotov@example.com");

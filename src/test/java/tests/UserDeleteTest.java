@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -24,6 +22,8 @@ public class UserDeleteTest extends BaseTestCase {
     @Description("This test check delete user with id 2")
     @DisplayName("Test negatives delete user with id 2")
     @Test
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("test-case-delete-1")
     public void testDeleteUserWithId2() {
 
         //LOGIN
@@ -52,6 +52,8 @@ public class UserDeleteTest extends BaseTestCase {
     @Description("This test check delete user")
     @DisplayName("Test positive delete user")
     @Test
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("test-case-delete-2")
     public void testDeleteUserSuccessfully() {
         //GENERATE USER
         Map<String, String> userData = getRegistrationData();
@@ -102,6 +104,9 @@ public class UserDeleteTest extends BaseTestCase {
     @Description("This test check delete user2 by user1")
     @DisplayName("Test negative delete user2 by user1")
     @Test
+    @Severity(SeverityLevel.CRITICAL)
+    @Issue(value = "BUG-3447")
+    @TmsLink("test-case-delete-3")
     public void testDeleteUserByDifferentUser() {
         //GENERATE USER1 and USER2
         Map<String, String> userData1 = getRegistrationData();
